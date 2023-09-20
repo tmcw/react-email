@@ -1,16 +1,14 @@
+import type { ReadableStream } from "node:stream/web";
 import { convert } from "html-to-text";
 import pretty from "pretty";
 import { type ReactNode } from "react";
 import { renderToReadableStream, renderToStaticMarkup } from "react-dom/server";
-import { type ReadableStream } from "node:stream/web";
 
 export default async function renderToString(children: ReactNode) {
   const stream = await renderToReadableStream(children);
 
   const html = await readableStreamToString(
-    // ReactDOMServerReadableStream behaves like ReadableStream
-    // in modern edge runtimes but the types are not compatible
-    stream as unknown as ReadableStream<Uint8Array>,
+    stream as unknown as ReadableStream<Uint8Array>
   );
 
   return (
@@ -23,14 +21,14 @@ export default async function renderToString(children: ReactNode) {
 }
 
 async function readableStreamToString(
-  readableStream: ReadableStream<Uint8Array>,
+  readableStream: ReadableStream<Uint8Array>
 ) {
   let result = "";
 
   const decoder = new TextDecoder();
 
   for await (const chunk of readableStream) {
-    result += decoder.decode(chunk);
+    result += decoder.decode(chunk as unknown as Uint8Array);
   }
 
   return result;
@@ -41,7 +39,7 @@ export const renderAsync = async (
   options?: {
     pretty?: boolean;
     plainText?: boolean;
-  },
+  }
 ) => {
   const markup =
     typeof renderToStaticMarkup === "undefined"
