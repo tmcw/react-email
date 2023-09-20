@@ -5,7 +5,7 @@ import { cd, exec } from 'shelljs';
 import { closeOraOnSIGNIT } from './close-ora-on-sigint';
 import { REACT_EMAIL_ROOT } from './constants';
 
-export type PackageManager = 'yarn' | 'npm' | 'pnpm';
+export type PackageManager = 'yarn' | 'npm' | 'pnpm' | 'bun';
 
 export const installDependencies = (packageManager: PackageManager) => {
   const spinner = ora('Installing dependencies...\n').start();

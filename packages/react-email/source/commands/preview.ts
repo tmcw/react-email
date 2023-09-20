@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import { exit } from 'shelljs';
-import { downloadClient, REACT_EMAIL_ROOT } from '../utils';
+import { REACT_EMAIL_ROOT } from '../utils/constants';
 import { setupServer } from '../utils/run-server';
+import { downloadClient } from '../utils/download-client';
 
 interface BuildPreviewArgs {
   dir: string;

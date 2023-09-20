@@ -1,15 +1,14 @@
-/* eslint-disable */
 import fs, { unlinkSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { glob } from 'glob';
-import esbuild from 'esbuild';
+import { buildSync } from 'esbuild';
 import tree from 'tree-node-cli';
 import ora from 'ora';
 import logSymbols from 'log-symbols';
 import type { Options } from '@react-email/render';
 import { render } from '@react-email/render';
 import normalize from 'normalize-path';
-import shell from 'shelljs';
+import { cp } from 'shelljs';
 import { closeOraOnSIGNIT } from '../utils/close-ora-on-sigint';
 /*
   This first builds all the templates using esbuild and then puts the output in the `.js`
@@ -26,7 +25,7 @@ export const exportTemplates = async (
 
   const allTemplates = glob.sync(normalize(path.join(srcDir, '*.{tsx,jsx}')));
 
-  esbuild.buildSync({
+  buildSync({
     bundle: true,
     entryPoints: allTemplates,
     platform: 'node',
@@ -42,7 +41,9 @@ export const exportTemplates = async (
   for (const template of allBuiltTemplates) {
     spinner.text = `rendering ${template.split('/').pop()}`;
     spinner.render();
+    // eslint-disable-next-line
     const component = await import(template);
+    // eslint-disable-next-line
     const rendered = render(component.default({}), options);
     const htmlPath = template.replace(
       '.js',
@@ -59,7 +60,7 @@ export const exportTemplates = async (
   const hasStaticDirectory = fs.existsSync(staticDir);
 
   if (hasStaticDirectory) {
-    const result = shell.cp('-r', staticDir, path.join(outDir, 'static'));
+    const result = cp('-r', staticDir, path.join(outDir, 'static'));
     if (result.code > 0) {
       throw new Error(
         `Something went wrong while copying the file to ${outDir}/static, ${result.cat()}`,

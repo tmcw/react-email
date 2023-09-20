@@ -28,8 +28,7 @@ export const createWatcherInstance = (watchDir: string) => {
 };
 
 export const watcher = (watcherInstance: FSWatcher, watchDir: string) => {
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  watcherInstance.on('all', async (event, filename) => {
+  watcherInstance.on('all', (event, filename) => {
     const file = filename.split(path.sep);
     if (file[1] === undefined) {
       return;
@@ -37,13 +36,11 @@ export const watcher = (watcherInstance: FSWatcher, watchDir: string) => {
 
     if (event === EVENT_FILE_DELETED) {
       if (file[1] === 'static' && file[2]) {
-        await fs.promises.rm(
-          path.join(REACT_EMAIL_ROOT, 'public', 'static', file[2]),
-        );
+        fs.rmSync(path.join(REACT_EMAIL_ROOT, 'public', 'static', file[2]));
         return;
       }
 
-      await fs.promises.rm(path.join(REACT_EMAIL_ROOT, filename));
+      fs.rmSync(path.join(REACT_EMAIL_ROOT, filename));
       return;
     }
 
@@ -62,6 +59,6 @@ export const watcher = (watcherInstance: FSWatcher, watchDir: string) => {
       return;
     }
 
-    await generateEmailsPreview(watchDir, 'templates');
+    generateEmailsPreview(watchDir, 'templates');
   });
 };

@@ -1,11 +1,9 @@
-/* eslint-disable */
 import fs from 'node:fs';
 import path from 'node:path';
 import ora from 'ora';
-import shell from 'shelljs';
+import { cp } from 'shelljs';
 import logSymbols from 'log-symbols';
-import fse from 'fs-extra';
-import glob from 'glob';
+import { sync } from 'glob';
 import {
   CURRENT_PATH,
   PACKAGE_EMAILS_PATH,
@@ -20,7 +18,7 @@ function osIndependentPath(p: string) {
   return p.split(path.sep).join('/');
 }
 
-export const generateEmailsPreview = async (
+export const generateEmailsPreview = (
   emailDir: string,
   type: 'all' | 'static' | 'templates' = 'all',
 ) => {
@@ -29,10 +27,11 @@ export const generateEmailsPreview = async (
     closeOraOnSIGNIT(spinner);
 
     if (type === 'all' || type === 'templates') {
-      await createEmailPreviews(emailDir);
+      createEmailPreviews(emailDir);
     }
+
     if (type === 'all' || type === 'static') {
-      await createStaticFiles();
+      createStaticFiles();
     }
 
     spinner.stopAndPersist({
@@ -44,85 +43,78 @@ export const generateEmailsPreview = async (
   }
 };
 
-const createEmailPreviews = async (emailDir: string) => {
-  const hasEmailsDirectory = fs.existsSync(PACKAGE_EMAILS_PATH);
+const packageEmailsPath = osIndependentPath(PACKAGE_EMAILS_PATH);
 
-  if (hasEmailsDirectory) {
-    await fs.promises.rm(PACKAGE_EMAILS_PATH, { recursive: true });
+const createEmailPreviews = (emailDir: string) => {
+  if (fs.existsSync(PACKAGE_EMAILS_PATH)) {
+    fs.rmSync(PACKAGE_EMAILS_PATH, { recursive: true });
   }
 
-  const list = glob.sync(
-    osIndependentPath(path.join(emailDir, '/*.{jsx,tsx}')),
-    {
-      absolute: true,
-    },
-  );
+  fs.mkdirSync(packageEmailsPath);
+
+  const list = sync(osIndependentPath(path.join(emailDir, '/*.{jsx,tsx}')), {
+    absolute: true,
+  });
 
   /**
    * instead of copying all files, which would break and js/ts imports,
    * we create placeholder files which just contain the following code:
    *
-   * import Mail from '../../path/to/emails/my-template.tsx`
+   * import Mail from '../../path/to/emails/my-template.tsx'
    * export default Mail
    */
   for (const _absoluteSrcFilePath of list) {
     const absoluteSrcFilePath = osIndependentPath(_absoluteSrcFilePath);
-    const fileName = absoluteSrcFilePath.split('/').pop()!;
+    const fileName = absoluteSrcFilePath.split('/').pop();
+
+    if (fileName === undefined) {
+      throw new Error(`Could not get file name from ${absoluteSrcFilePath}`);
+    }
+
     const targetFile = path.join(
-      osIndependentPath(PACKAGE_EMAILS_PATH),
+      packageEmailsPath,
       absoluteSrcFilePath.replace(osIndependentPath(emailDir), ''),
     );
+
+    const dirWithTargetFile = path.dirname(targetFile);
+
     const importPath = path.relative(
-      path.dirname(targetFile),
+      dirWithTargetFile,
       path.dirname(absoluteSrcFilePath),
     );
 
     const importFile = osIndependentPath(path.join(importPath, fileName));
 
     // if this import is changed, you also need to update `client/src/app/preview/[slug]/page.tsx`
-    const sourceCode =
-      `import Mail from '${importFile}';export default Mail;`.replace(
-        ';',
-        ';\n',
-      );
-    await fse.ensureDir(path.dirname(targetFile));
-    if (fse.existsSync(targetFile)) {
-      if (fse.readFileSync(targetFile, 'utf8') === sourceCode) {
-        // file already exists, no need to trigger a rebuild.
-        // can otherwise trigger the next.js rebuild multiple times
-        continue;
-      }
-    }
-    await fse.writeFile(targetFile, sourceCode);
+    const sourceCode = `import Mail from '${importFile}';\nexport default Mail;\n`;
+
+    fs.writeFileSync(targetFile, sourceCode);
   }
 };
 
-const createStaticFiles = async () => {
+const createStaticFiles = () => {
+  const staticPath = path.join(CURRENT_PATH, 'static');
+
+  if (!fs.existsSync(staticPath)) {
+    return;
+  }
+
   const hasPublicDirectory = fs.existsSync(PACKAGE_PUBLIC_PATH);
 
   if (hasPublicDirectory) {
-    await fs.promises.rm(PACKAGE_PUBLIC_PATH, { recursive: true });
+    fs.rmSync(PACKAGE_PUBLIC_PATH, { recursive: true });
   }
 
-  await fse.ensureDir(path.join(PACKAGE_PUBLIC_PATH, 'static'));
-  const userHasStaticDirectory = fs.existsSync(
-    path.join(CURRENT_PATH, 'static'),
-  );
+  fs.mkdirSync(path.join(PACKAGE_PUBLIC_PATH, 'static'), { recursive: true });
 
-  if (userHasStaticDirectory) {
-    const result = shell.cp(
-      '-r',
-      path.join(CURRENT_PATH, 'static'),
-      path.join(PACKAGE_PUBLIC_PATH),
+  const result = cp('-r', staticPath, path.join(PACKAGE_PUBLIC_PATH));
+
+  if (result.code > 0) {
+    throw new Error(
+      `Something went wrong while copying the file to ${path.join(
+        CURRENT_PATH,
+        'static',
+      )}, ${result.cat()}`,
     );
-
-    if (result.code > 0) {
-      throw new Error(
-        `Something went wrong while copying the file to ${path.join(
-          CURRENT_PATH,
-          'static',
-        )}, ${result.cat()}`,
-      );
-    }
   }
 };

@@ -3,18 +3,16 @@ import { detect as detectPackageManager } from 'detect-package-manager';
 import { findRoot } from '@manypkg/find-root';
 import { cd } from 'shelljs';
 import { createWatcherInstance, watcher } from './watcher';
-import type { PackageManager } from '.';
+import { CURRENT_PATH, REACT_EMAIL_ROOT } from './constants';
+import { convertToAbsolutePath } from './convert-to-absolute-path';
+import { installDependencies } from './install-dependencies';
 import {
-  CURRENT_PATH,
-  convertToAbsolutePath,
   startDevServer,
-  installDependencies,
-  syncPkg,
-  generateEmailsPreview,
   buildProdServer,
   startProdServer,
-  REACT_EMAIL_ROOT,
-} from '.';
+} from './start-server-command';
+import { syncPkg } from './sync-package';
+import { generateEmailsPreview } from './generate-email-preview';
 
 /**
  * Utility function to run init/sync for the server in dev, build or start mode.
@@ -32,15 +30,17 @@ export const setupServer = async (
   const cwd = await findRoot(CURRENT_PATH).catch(() => ({
     rootDir: CURRENT_PATH,
   }));
+
   const emailDir = convertToAbsolutePath(dir);
-  const packageManager: PackageManager = await detectPackageManager({
+  const packageManager = await detectPackageManager({
     cwd: cwd.rootDir,
-  }).catch(() => 'npm');
+  }).catch(() => 'npm' as const);
 
   // when starting, we dont need to worry about these because it should've already happened during the build stage.
   if (type !== 'start') {
-    await generateEmailsPreview(emailDir);
+    generateEmailsPreview(emailDir);
     await syncPkg();
+
     if (!skipInstall) {
       installDependencies(packageManager);
     }
@@ -50,6 +50,7 @@ export const setupServer = async (
     const watcherInstance = createWatcherInstance(emailDir);
 
     startDevServer(packageManager, port);
+
     watcher(watcherInstance, emailDir);
   } else if (type === 'build') {
     buildProdServer(packageManager);
