@@ -10,7 +10,7 @@
     "build": "tsc",
     "format:check": "prettier --check \"**/*.{js,ts,tsx,json}\"",
     "format": "prettier --write \"**/*.{js,ts,tsx,json}\"",
-    "lint": "eslint",
+    "lint": "eslint .",
     "clean": "rm -rf dist"
   },
   "license": "MIT",
@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "11.0.1",
+    "@types/glob": "^8.1.0",
     "@types/node": "18.11.9",
     "@types/normalize-path": "3.0.0",
     "@types/shelljs": "0.8.12",

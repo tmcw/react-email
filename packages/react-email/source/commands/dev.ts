@@ -1,6 +1,6 @@
+import fs from 'node:fs';
+import { exit } from 'shelljs';
 import { downloadClient, REACT_EMAIL_ROOT } from '../utils';
-import fs from 'fs';
-import shell from 'shelljs';
 import { setupServer } from '../utils/run-server';
 
 interface Args {
@@ -25,6 +25,6 @@ export const dev = async ({ dir, port, skipInstall }: Args) => {
     await setupServer('dev', dir, port, skipInstall);
   } catch (error) {
     console.log(error);
-    shell.exit(1);
+    exit(1);
   }
 };

@@ -1,18 +1,18 @@
-import shell from 'shelljs';
-import path from 'path';
-import { REACT_EMAIL_ROOT } from './constants';
-import ora from 'ora';
+import path from 'node:path';
 import logSymbols from 'log-symbols';
+import ora from 'ora';
+import { cd, exec } from 'shelljs';
 import { closeOraOnSIGNIT } from './close-ora-on-sigint';
+import { REACT_EMAIL_ROOT } from './constants';
 
 export type PackageManager = 'yarn' | 'npm' | 'pnpm';
 
-export const installDependencies = async (packageManager: PackageManager) => {
+export const installDependencies = (packageManager: PackageManager) => {
   const spinner = ora('Installing dependencies...\n').start();
   closeOraOnSIGNIT(spinner);
 
-  shell.cd(path.join(REACT_EMAIL_ROOT));
-  shell.exec(`${packageManager} install`);
+  cd(path.join(REACT_EMAIL_ROOT));
+  exec(`${packageManager} install`);
   spinner.stopAndPersist({
     symbol: logSymbols.success,
     text: 'Dependencies installed',

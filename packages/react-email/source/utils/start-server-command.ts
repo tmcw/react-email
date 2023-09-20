@@ -1,10 +1,10 @@
-import { ChildProcess } from 'child_process';
-import shell from 'shelljs';
+import type { ChildProcess } from 'node:child_process';
+import { exec, exit } from 'shelljs';
 
 let processesToKill: ChildProcess[] = [];
 
 function execAsync(command: string) {
-  const process = shell.exec(command, { async: true });
+  const process = exec(command, { async: true });
   processesToKill.push(process);
   process.on('close', () => {
     processesToKill = processesToKill.filter((p) => p !== process);
@@ -23,8 +23,8 @@ export const buildProdServer = (packageManager: string) => {
   execAsync(`${packageManager} run build`);
 
   // if build fails for whatever reason, make sure the shell actually exits
-  process.on('close', (code) => {
-    shell.exit(code ?? undefined);
+  process.on('close', (code: number | undefined) => {
+    exit(code ?? undefined);
   });
 };
 
@@ -40,7 +40,7 @@ const exitHandler: (options?: { exit?: boolean }) => NodeJS.ExitListener =
       }
     });
     if (options?.exit) {
-      shell.exit(code);
+      exit(code);
     }
   };
 

@@ -1,19 +1,20 @@
+/* eslint-disable */
+import fs from 'node:fs';
+import path from 'node:path';
+import ora from 'ora';
+import shell from 'shelljs';
 import logSymbols from 'log-symbols';
+import fse from 'fs-extra';
+import glob from 'glob';
 import {
   CURRENT_PATH,
   PACKAGE_EMAILS_PATH,
   PACKAGE_PUBLIC_PATH,
 } from './constants';
-import fs from 'fs';
-import ora from 'ora';
-import shell from 'shelljs';
-import path from 'path';
-import fse from 'fs-extra';
-import glob from 'glob';
 import { closeOraOnSIGNIT } from './close-ora-on-sigint';
 
 /**
- * Node.js and imports are requiring all imports to be /, while some functions (like glob) return paths with \ for path separation on windows
+ * Node.js and imports are requiring all imports to be /, while some functions (like glob) return paths with \\ for path separation on windows
  */
 function osIndependentPath(p: string) {
   return p.split(path.sep).join('/');

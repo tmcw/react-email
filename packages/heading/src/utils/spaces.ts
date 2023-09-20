@@ -8,7 +8,7 @@ export interface Margin {
   ml?: string;
 }
 
-export const withMargin = (props: Margin) =>
+export const withMargin = (props: Margin): Record<string, string> =>
   [
     withSpace(props.m, ["margin"]),
     withSpace(props.mx, ["marginLeft", "marginRight"]),
@@ -19,7 +19,10 @@ export const withMargin = (props: Margin) =>
     withSpace(props.ml, ["marginLeft"]),
   ].filter((s) => Object.keys(s).length)[0];
 
-const withSpace = (value: string | undefined, properties: string[]) => {
+const withSpace = (
+  value: string | undefined,
+  properties: string[]
+): Record<string, string> => {
   return properties.reduce((styles, property) => {
     if (value) {
       return { ...styles, [property]: `${value}px` };

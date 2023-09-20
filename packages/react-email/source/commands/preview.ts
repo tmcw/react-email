@@ -1,5 +1,5 @@
-import fs from 'fs';
-import shell from 'shelljs';
+import fs from 'node:fs';
+import { exit } from 'shelljs';
 import { downloadClient, REACT_EMAIL_ROOT } from '../utils';
 import { setupServer } from '../utils/run-server';
 
@@ -19,7 +19,7 @@ export const buildPreview = async ({ dir }: BuildPreviewArgs) => {
     await setupServer('build', dir, '');
   } catch (error) {
     console.log(error);
-    shell.exit(1);
+    exit(1);
   }
 };
 
@@ -39,6 +39,6 @@ export const startPreview = async ({ port }: StartPreviewArgs) => {
     await setupServer('start', '', port);
   } catch (error) {
     console.log(error);
-    shell.exit(1);
+    exit(1);
   }
 };

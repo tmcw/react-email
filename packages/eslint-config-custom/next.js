@@ -35,7 +35,6 @@ module.exports = {
     },
   },
   ignorePatterns: ["node_modules/", "dist/"],
-  // add rules configurations here
   rules: {
     "@next/next/no-img-element": "off",
     "@typescript-eslint/explicit-function-return-type": "off",

@@ -694,6 +694,10 @@ importers:
         version: 5.1.6
 
   packages/html:
+    dependencies:
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
     devDependencies:
       '@babel/preset-react':
         specifier: 7.22.5
@@ -832,13 +836,16 @@ importers:
       md-to-react-email:
         specifier: 4.0.0
         version: 4.0.0(react-email@packages+react-email)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
     devDependencies:
       '@babel/preset-react':
         specifier: 7.22.5
         version: 7.22.5(@babel/core@7.21.8)
       '@react-email/render':
-        specifier: 0.0.6
-        version: 0.0.6
+        specifier: 0.0.7
+        version: link:../render
       '@types/jest':
         specifier: 29.5.3
         version: 29.5.3
@@ -967,6 +974,9 @@ importers:
       '@types/fs-extra':
         specifier: 11.0.1
         version: 11.0.1
+      '@types/glob':
+        specifier: ^8.1.0
+        version: 8.1.0
       '@types/node':
         specifier: 18.11.9
         version: 18.11.9
@@ -4059,6 +4069,13 @@ packages:
 
   /@types/glob@7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
+    dependencies:
+      '@types/minimatch': 5.1.2
+      '@types/node': 18.11.9
+    dev: true
+
+  /@types/glob@8.1.0:
+    resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
     dependencies:
       '@types/minimatch': 5.1.2
       '@types/node': 18.11.9

@@ -3,14 +3,14 @@ import * as React from "react";
 type HrElement = React.ElementRef<"hr">;
 type RootProps = React.ComponentPropsWithoutRef<"hr">;
 
-export interface HrProps extends RootProps {}
+export type HrProps = RootProps;
 
 export const Hr = React.forwardRef<HrElement, Readonly<HrProps>>(
   ({ style, ...props }, forwardedRef) => (
     <hr
       {...props}
-      ref={forwardedRef}
       data-id="react-email-hr"
+      ref={forwardedRef}
       style={{
         width: "100%",
         border: "none",
@@ -18,7 +18,7 @@ export const Hr = React.forwardRef<HrElement, Readonly<HrProps>>(
         ...style,
       }}
     />
-  ),
+  )
 );
 
 Hr.displayName = "Hr";

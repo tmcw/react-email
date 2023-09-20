@@ -21,6 +21,9 @@ module.exports = {
   parserOptions: {
     project,
   },
+  env: {
+    node: true,
+  },
   globals: {
     JSX: true,
   },
@@ -32,8 +35,14 @@ module.exports = {
     },
   },
   ignorePatterns: ["node_modules/", "dist/", ".eslintrc.js"],
-
   rules: {
-    // add specific rules configurations here
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        namedComponents: "arrow-function",
+        unnamedComponents: "arrow-function",
+      },
+    ],
   },
 };
