@@ -22,12 +22,14 @@
     "email"
   ],
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18"
   },
   "bin": {
     "create-email": "src/index.js"
   },
   "devDependencies": {
-    "prettier": "3.0.0"
+    "eslint-config-custom": "workspace:*",
+    "prettier": "3.0.0",
+    "typescript": "5.1.6"
   }
 }
