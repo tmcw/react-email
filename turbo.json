@@ -16,7 +16,8 @@
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
-    "format": {},
+    "//#format": {},
+    "//#format:check": {},
     "test": {},
     "dev": {
       "cache": false,

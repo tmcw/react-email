@@ -8,8 +8,6 @@
   "types": "./dist/source/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "format:check": "prettier --check \"**/*.{js,ts,tsx,json}\"",
-    "format": "prettier --write \"**/*.{js,ts,tsx,json}\"",
     "lint": "eslint .",
     "clean": "rm -rf dist"
   },
@@ -48,7 +46,6 @@
     "@types/normalize-path": "3.0.0",
     "@types/shelljs": "0.8.12",
     "eslint-config-custom": "workspace:*",
-    "prettier": "3.0.0",
     "ts-node": "10.9.1",
     "tsconfig": "workspace:*",
     "typescript": "5.1.6"

@@ -27,9 +27,7 @@
     "lint": "eslint .",
     "clean": "rm -rf dist",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "react",

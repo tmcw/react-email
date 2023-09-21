@@ -28,9 +28,7 @@
     "lint": "eslint",
     "clean": "rm -rf dist",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -61,7 +59,6 @@
     "@types/react-dom": "18.0.7",
     "eslint-config-custom": "workspace:*",
     "jest": "29.7.0",
-    "prettier": "3.0.0",
     "react": "18.2.0",
     "ts-jest": "29.1.1",
     "tsconfig": "workspace:*",
