@@ -23,7 +23,7 @@ export const Img = React.forwardRef<ImgElement, Readonly<ImgProps>>(
       }}
       width={width}
     />
-  )
+  ),
 );
 
 Img.displayName = "Img";

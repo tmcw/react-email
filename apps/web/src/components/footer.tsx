@@ -12,7 +12,7 @@ export const Footer = React.forwardRef<FooterElement, Readonly<RootProps>>(
     <footer
       className={classnames(
         "flex h-[80px] items-center justify-center text-center",
-        className
+        className,
       )}
       ref={forwardedRef}
       {...props}
@@ -52,7 +52,7 @@ export const Footer = React.forwardRef<FooterElement, Readonly<RootProps>>(
         </Anchor>
       </Text>
     </footer>
-  )
+  ),
 );
 
 Footer.displayName = "Footer";

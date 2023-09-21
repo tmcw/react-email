@@ -18,7 +18,7 @@ export const IconBase = React.forwardRef<IconElement, Readonly<IconProps>>(
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     />
-  )
+  ),
 );
 
 IconBase.displayName = "IconBase";

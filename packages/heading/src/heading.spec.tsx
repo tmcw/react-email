@@ -6,10 +6,10 @@ describe("render", () => {
     const actualOutput = render(
       <Heading as="h2" mx="4">
         Lorem ipsum
-      </Heading>
+      </Heading>,
     );
     expect(actualOutput).toMatchInlineSnapshot(
-      `"<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><h2 data-id="react-email-heading" style="margin-left:4px;margin-right:4px">Lorem ipsum</h2>"`
+      `"<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><h2 data-id="react-email-heading" style="margin-left:4px;margin-right:4px">Lorem ipsum</h2>"`,
     );
   });
 });

@@ -34,7 +34,7 @@ export const IconClipboard = React.forwardRef<IconElement, Readonly<IconProps>>(
         strokeWidth="1.5"
       />
     </IconBase>
-  )
+  ),
 );
 
 IconClipboard.displayName = "IconClipboard";

@@ -53,7 +53,7 @@ function greet(name) {
 console.log(\`Hello, $\{name}!\`);
 }
 \`\`\``}
-      </Markdown>
+      </Markdown>,
     );
     expect(actualOutput).toMatchInlineSnapshot(`
 "<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><div data-id="react-email-markdown"><h1 style="font-weight:500;padding-top:20px;font-size:2.5rem" data-id="react-email-heading">Markdown Test Document</h1><p data-id="react-email-text">This is a <strong style="font-weight:bold">test document</strong> to check the capabilities of a Markdown parser.</p>
@@ -95,10 +95,10 @@ console.log(\`Hello, \${name}!\`);
 ##### Heading 5!
 ###### Heading 6!
        `}
-      </Markdown>
+      </Markdown>,
     );
     expect(actualOutput).toMatchInlineSnapshot(
-      `"<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><div data-id="react-email-markdown"><h1 style="font-weight:500;padding-top:20px;font-size:2.5rem" data-id="react-email-heading">Heading 1!</h1><h2 style="font-weight:500;padding-top:20px;font-size:2rem" data-id="react-email-heading">Heading 2!</h2><h3 style="font-weight:500;padding-top:20px;font-size:1.75rem" data-id="react-email-heading">Heading 3!</h3><h4 style="font-weight:500;padding-top:20px;font-size:1.5rem" data-id="react-email-heading">Heading 4!</h4><h5 style="font-weight:500;padding-top:20px;font-size:1.25rem" data-id="react-email-heading">Heading 5!</h5><h6 style="font-weight:500;padding-top:20px;font-size:1rem" data-id="react-email-heading">Heading 6!</h6></div>"`
+      `"<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><div data-id="react-email-markdown"><h1 style="font-weight:500;padding-top:20px;font-size:2.5rem" data-id="react-email-heading">Heading 1!</h1><h2 style="font-weight:500;padding-top:20px;font-size:2rem" data-id="react-email-heading">Heading 2!</h2><h3 style="font-weight:500;padding-top:20px;font-size:1.75rem" data-id="react-email-heading">Heading 3!</h3><h4 style="font-weight:500;padding-top:20px;font-size:1.5rem" data-id="react-email-heading">Heading 4!</h4><h5 style="font-weight:500;padding-top:20px;font-size:1.25rem" data-id="react-email-heading">Heading 5!</h5><h6 style="font-weight:500;padding-top:20px;font-size:1rem" data-id="react-email-heading">Heading 6!</h6></div>"`,
     );
   });
 
@@ -106,7 +106,7 @@ console.log(\`Hello, \${name}!\`);
     const actualOutput = render(
       <Markdown showDataId>
         **This is sample bold text in markdown** and *this is italic text*
-      </Markdown>
+      </Markdown>,
     );
     expect(actualOutput).toMatchInlineSnapshot(`
 "<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><div data-id="react-email-markdown"><p data-id="react-email-text"><strong style="font-weight:bold">This is sample bold text in markdown</strong> and <em style="font-style:italic">this is italic text</em></p>
@@ -116,7 +116,9 @@ console.log(\`Hello, \${name}!\`);
 
   it("renders links in the correct format for browsers", () => {
     const actualOutput = render(
-      <Markdown showDataId>Link to [React-email](https://react.email)</Markdown>
+      <Markdown showDataId>
+        Link to [React-email](https://react.email)
+      </Markdown>,
     );
     expect(actualOutput).toMatchInlineSnapshot(`
 "<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><div data-id="react-email-markdown"><p data-id="react-email-text">Link to <a href="https://react.email" target="_blank" data-id="react-email-link" style="color:#007bff;text-decoration:underline;background-color:transparent">React-email</a></p>
@@ -134,7 +136,7 @@ console.log(\`Hello, \${name}!\`);
 - Item Two
 - Item Three
        `}
-      </Markdown>
+      </Markdown>,
     );
     expect(actualOutput).toMatchInlineSnapshot(`
 "<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><div data-id="react-email-markdown"><h1 style="font-weight:500;padding-top:20px;font-size:2.5rem" data-id="react-email-heading">Below is a list</h1><ul>

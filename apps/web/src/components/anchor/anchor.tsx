@@ -20,7 +20,7 @@ export const Anchor = React.forwardRef<
       "hover:-translate-y-1",
       "focus:ring-2 focus:ring-white/20 focus:ring-offset-4 focus:ring-offset-black",
       getAppearance(appearance),
-      className
+      className,
     )}
     ref={forwardedRef}
     {...props}

@@ -30,7 +30,7 @@ export const Text = React.forwardRef<HTMLSpanElement, Readonly<TextProps>>(
       children,
       ...props
     },
-    forwardedRef
+    forwardedRef,
   ) => (
     <SlotPrimitive.Slot
       className={classnames(
@@ -38,14 +38,14 @@ export const Text = React.forwardRef<HTMLSpanElement, Readonly<TextProps>>(
         transform,
         getSizesClassNames(size),
         getColorClassNames(color),
-        getWeightClassNames(weight)
+        getWeightClassNames(weight),
       )}
       ref={forwardedRef}
       {...props}
     >
       <Tag>{children}</Tag>
     </SlotPrimitive.Slot>
-  )
+  ),
 );
 
 const getSizesClassNames = (size: TextSize | undefined) => {

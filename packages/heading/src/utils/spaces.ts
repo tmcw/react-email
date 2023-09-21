@@ -21,7 +21,7 @@ export const withMargin = (props: Margin): Record<string, string> =>
 
 const withSpace = (
   value: string | undefined,
-  properties: string[]
+  properties: string[],
 ): Record<string, string> => {
   return properties.reduce((styles, property) => {
     if (value) {

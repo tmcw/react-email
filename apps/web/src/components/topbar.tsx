@@ -15,7 +15,7 @@ export const Topbar = React.forwardRef<TopbarElement, Readonly<TopbarProps>>(
     <header
       className={classnames(
         "flex h-[80px] items-center justify-between md:h-[100px]",
-        className
+        className,
       )}
       ref={forwardedRef}
       {...props}
@@ -28,7 +28,7 @@ export const Topbar = React.forwardRef<TopbarElement, Readonly<TopbarProps>>(
       </div>
       <Menu />
     </header>
-  )
+  ),
 );
 
 Topbar.displayName = "Topbar";

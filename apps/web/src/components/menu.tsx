@@ -67,7 +67,7 @@ export const Menu = React.forwardRef<MenuElement, Readonly<MenuProps>>(
         </MenuItem>
       </ul>
     </nav>
-  )
+  ),
 );
 
 Menu.displayName = "Menu";
@@ -91,14 +91,14 @@ const MenuItem = React.forwardRef<MenuItemElement, Readonly<MenuItemProps>>(
           "text-slate-11 inline-flex h-8 items-center justify-center rounded-md text-sm",
           "hover:text-slate-12 hover:bg-white/10",
           "outline-none focus:bg-white/10 focus:ring-2 focus:ring-white/20",
-          className
+          className,
         )}
         href={href}
       >
         {children}
       </Link>
     </li>
-  )
+  ),
 );
 
 MenuItem.displayName = "MenuItem";

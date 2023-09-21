@@ -6,7 +6,17 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "web#build": {
+      "dependsOn": ["^build"],
+      "env": [
+        "RESEND_API_KEY",
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+      ],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
     "lint": {},
+    "format": {},
     "test": {},
     "dev": {
       "cache": false,

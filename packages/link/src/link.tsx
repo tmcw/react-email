@@ -20,7 +20,7 @@ export const Link = React.forwardRef<LinkElement, Readonly<LinkProps>>(
     >
       {props.children}
     </a>
-  )
+  ),
 );
 
 Link.displayName = "Link";

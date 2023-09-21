@@ -20,7 +20,7 @@ export const Markdown = React.forwardRef<MarkdownElement, MarkdownProps>(
       showDataId = false,
       ...props
     },
-    forwardedRef
+    forwardedRef,
   ) => {
     const parsedMarkdown = parseMarkdownToReactEmailJSX({
       markdown: children,
@@ -37,7 +37,7 @@ export const Markdown = React.forwardRef<MarkdownElement, MarkdownProps>(
         style={markdownContainerStyles}
       />
     );
-  }
+  },
 );
 
 Markdown.displayName = "Markdown";

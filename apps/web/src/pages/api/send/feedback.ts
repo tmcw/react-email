@@ -1,4 +1,3 @@
-/* eslint-disable turbo/no-undeclared-env-vars -- only needed if deploying */
 import is from "@sindresorhus/is";
 import { createClient } from "@supabase/supabase-js";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -12,7 +11,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function sendFeedback(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method === "OPTIONS") {
     res.status(200).json({});

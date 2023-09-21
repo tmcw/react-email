@@ -40,21 +40,21 @@ export const Heading = React.forwardRef<
       weight = "bold",
       ...props
     },
-    forwardedRef
+    forwardedRef,
   ) => (
     <SlotPrimitive.Slot
       className={classnames(
         className,
         getSizesClassNames(size),
         getColorClassNames(color),
-        getWeightClassNames(weight)
+        getWeightClassNames(weight),
       )}
       ref={forwardedRef}
       {...props}
     >
       <Tag>{children}</Tag>
     </SlotPrimitive.Slot>
-  )
+  ),
 );
 
 const getSizesClassNames = (size: HeadingSize | undefined) => {

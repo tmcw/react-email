@@ -13,7 +13,7 @@ export const IconCheck = React.forwardRef<IconElement, Readonly<IconProps>>(
         strokeWidth="1.5"
       />
     </IconBase>
-  )
+  ),
 );
 
 IconCheck.displayName = "IconCheck";

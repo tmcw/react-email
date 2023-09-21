@@ -8,7 +8,7 @@ export default async function renderToString(children: ReactNode) {
   const stream = await renderToReadableStream(children);
 
   const html = await readableStreamToString(
-    stream as unknown as ReadableStream<Uint8Array>
+    stream as unknown as ReadableStream<Uint8Array>,
   );
 
   return (
@@ -21,7 +21,7 @@ export default async function renderToString(children: ReactNode) {
 }
 
 async function readableStreamToString(
-  readableStream: ReadableStream<Uint8Array>
+  readableStream: ReadableStream<Uint8Array>,
 ) {
   let result = "";
 
@@ -39,7 +39,7 @@ export const renderAsync = async (
   options?: {
     pretty?: boolean;
     plainText?: boolean;
-  }
+  },
 ) => {
   const markup =
     typeof renderToStaticMarkup === "undefined"

@@ -25,13 +25,13 @@ export const Button = React.forwardRef<ButtonElement, Readonly<ButtonProps>>(
       size = "2",
       ...props
     },
-    forwardedRef
+    forwardedRef,
   ) => {
     const classNames = classnames(
       getSize(size),
       getAppearance(appearance),
       "inline-flex items-center justify-center border font-medium",
-      className
+      className,
     );
 
     return asChild ? (
@@ -48,7 +48,7 @@ export const Button = React.forwardRef<ButtonElement, Readonly<ButtonProps>>(
         {children}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

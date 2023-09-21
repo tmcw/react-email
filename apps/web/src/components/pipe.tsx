@@ -43,7 +43,7 @@ export const Pipe = React.forwardRef<PipeElement, Readonly<RootProps>>(
         </clipPath>
       </defs>
     </svg>
-  )
+  ),
 );
 
 Pipe.displayName = "Pipe";

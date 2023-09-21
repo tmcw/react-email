@@ -5,7 +5,7 @@ const resend = new Resend("re_g4UAGCCP_PcWALk33riV1K9TGkJRob9W2");
 
 export default async function sendTest(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   await resend.sendEmail({
     from: "React Email <preview@react.email>",

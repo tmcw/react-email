@@ -12,7 +12,7 @@ export const Heading = React.forwardRef<
 >(
   (
     { as: Tag = "h1", children, style, m, mx, my, mt, mr, mb, ml, ...props },
-    forwardedRef
+    forwardedRef,
   ) => {
     return (
       <Slot
@@ -24,7 +24,7 @@ export const Heading = React.forwardRef<
         <Tag>{children}</Tag>
       </Slot>
     );
-  }
+  },
 );
 
 Heading.displayName = "Heading";

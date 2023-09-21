@@ -16,13 +16,13 @@ interface BadgeProps extends RootProps {
 export const Badge = React.forwardRef<BadgeElement, Readonly<BadgeProps>>(
   (
     { appearance = "cyan", className, children, size = "1", ...props },
-    forwardedRef
+    forwardedRef,
   ) => {
     const classNames = classnames(
       getSize(size),
       getAppearance(appearance),
       "inline-flex items-center justify-center border font-medium",
-      className
+      className,
     );
 
     return (
@@ -30,7 +30,7 @@ export const Badge = React.forwardRef<BadgeElement, Readonly<BadgeProps>>(
         {children}
       </span>
     );
-  }
+  },
 );
 
 Badge.displayName = "Badge";

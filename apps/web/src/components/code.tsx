@@ -55,7 +55,7 @@ export function Code({ children, className, language = "bash" }: CodeProps) {
         <pre
           className={classnames(
             "border-slate-6 relative inline-flex h-11 w-full items-center overflow-auto whitespace-pre rounded-md border pl-4 pr-10 text-sm backdrop-blur-md",
-            className
+            className,
           )}
           style={{
             lineHeight: "130%",
