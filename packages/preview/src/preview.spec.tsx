@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace -- off because of weird HTML snapshots */
 import { render } from "@react-email/render";
 import { Preview } from "./index";
 
