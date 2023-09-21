@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import type { Language } from "prism-react-renderer";
-import Highlight, { defaultProps } from "prism-react-renderer";
+import { Highlight } from "prism-react-renderer";
 import * as React from "react";
 import { IconButton } from "./icon-button";
 import { IconCheck, IconClipboard } from "./icons";
@@ -50,7 +50,7 @@ export function Code({ children, className, language = "bash" }: CodeProps) {
   const value = children.trim();
 
   return (
-    <Highlight {...defaultProps} code={value} language={language} theme={theme}>
+    <Highlight code={value} language={language} theme={theme}>
       {({ tokens, getLineProps, getTokenProps }) => (
         <pre
           className={classnames(

@@ -45,15 +45,17 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "1.0.2",
+    "@radix-ui/react-slot": "1.0.2"
+  },
+  "peerDependencies": {
     "react": "18.2.0"
   },
   "devDependencies": {
     "@babel/preset-react": "7.22.5",
     "@react-email/render": "0.0.6",
     "@types/jest": "29.5.5",
-    "@types/react": "18.0.20",
-    "@types/react-dom": "18.0.6",
+    "@types/react": "18.0.22",
+    "@types/react-dom": "18.0.7",
     "eslint-config-custom": "workspace:*",
     "jest": "29.7.0",
     "prettier": "3.0.0",

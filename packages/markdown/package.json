@@ -54,7 +54,7 @@
   "devDependencies": {
     "@babel/preset-react": "7.22.5",
     "@types/jest": "29.5.5",
-    "@types/react": "18.0.20",
+    "@types/react": "18.0.22",
     "eslint-config-custom": "workspace:*",
     "jest": "29.7.0",
     "ts-jest": "29.1.1",
@@ -64,6 +64,6 @@
     "typescript": "5.1.6"
   },
   "dependencies": {
-    "md-to-react-email": "4.0.0"
+    "md-to-react-email": "4.1.0"
   }
 }

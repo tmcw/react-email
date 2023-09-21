@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access -- TODO: fix */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment -- TODO: fix */
 import { promises as fs } from 'node:fs';
 import { dirname, join as pathJoin } from 'node:path';
 import { render } from '@react-email/render';

@@ -1,8 +1,6 @@
 import { LayoutGroup, motion } from 'framer-motion';
-import type { Language } from 'prism-react-renderer';
 import * as React from 'react';
-import { copyTextToClipboard } from '../utils';
-import languageMap from '../utils/language-map';
+import { copyTextToClipboard } from '../utils/copy-text-to-clipboard';
 import { Code } from './code';
 import { IconButton } from './icon-button';
 import { IconCheck } from './icon-check';
@@ -17,9 +15,15 @@ interface CodeContainerProps {
 }
 
 interface MarkupProps {
-  language: Language;
+  language: 'jsx' | 'markup' | 'markdown';
   content: string;
 }
+
+const languageMap = {
+  jsx: 'React',
+  markup: 'HTML',
+  markdown: 'Plain Text',
+};
 
 export function CodeContainer({
   markups,
