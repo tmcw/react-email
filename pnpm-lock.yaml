@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -541,8 +545,8 @@ importers:
         version: 1.6.0
     devDependencies:
       '@types/fs-extra':
-        specifier: 11.0.1
-        version: 11.0.1
+        specifier: 11.0.3
+        version: 11.0.3
       '@types/normalize-path':
         specifier: 3.0.0
         version: 3.0.0
@@ -2028,11 +2032,11 @@ packages:
     resolution: {integrity: sha512-VOVRLM1mBxIRxydiViqPcKn6MIxZytrbMpd6RJLIWKxUNr3zux8no0Oc7kJx0WAPIitgZ0gkrDS+btlqQpubpw==}
     dev: true
 
-  /@types/fs-extra@11.0.1:
-    resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
+  /@types/fs-extra@11.0.3:
+    resolution: {integrity: sha512-sF59BlXtUdzEAL1u0MSvuzWd7PdZvZEtnaVkzX5mjpdWTJ8brG0jUqve3jPCzSzvAKKMHTG8F8o/WMQLtleZdQ==}
     dependencies:
       '@types/jsonfile': 6.1.2
-      '@types/node': 18.11.9
+      '@types/node': 18.18.0
     dev: true
 
   /@types/glob@7.2.0:
@@ -7024,7 +7028,3 @@ packages:
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
