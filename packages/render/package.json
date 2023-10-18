@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "7.22.5",
-    "@types/html-to-text": "9.0.1",
+    "@types/html-to-text": "9.0.3",
     "@types/pretty": "2.0.1",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
